@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsMyIP?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>WhatsMyIP?</h1>
+
+<p id="ip" style="font-size:15vw;font-weight:bold;overflow-wrap:anywhere;"></p>
+
+<button onclick="getIP()" style="font-size:30px;padding:15px;">Refresh IP</button>
+
+<script>
+const ip = document.getElementById("ip");
+
+function getIP() {
+    fetch("https://api.ipify.org?format=json")
+    .then(r => r.json())
+    .then(d => ip.textContent = d.ip)
+    .catch(() => ip.textContent = "Lookup failed!");
+}
+
+getIP();
+</script>
+
+</body>
+</html>
